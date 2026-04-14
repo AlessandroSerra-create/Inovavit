@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inova Vit — Suplementos Naturais para Energia, Imunidade e Bem-Estar</title>
+<meta name="description" content="Suplementos com ingredientes rastreados e dosagens que funcionam. Vitaminas, ômega-3, colágeno e muito mais. Frete grátis acima R$199.">
+<meta property="og:title" content="Inova Vit — Suplementos Naturais">
+<meta property="og:description" content="Fórmulas desenvolvidas por especialistas. 15.000+ clientes satisfeitos.">
+<meta property="og:image" content="logo.png">
+<meta property="og:url" content="https://www.inovavit.com.br/">
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.inovavit.com.br/">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/phosphor-icons"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F7F4EF;
+  --bg2:#EEE9E0;
+  --ink:#1A1714;
+  --accent:#5C7A4E;
+  --accent2:#B8860B;
+  --muted:#8A8278;
+  --surface:#FFFFFF;
+  --footer-bg:#1A1714;
+  --serif:'DM Serif Display',serif;
+  --sans:'DM Sans',sans-serif;
+  --radius:24px;
+  --radius-btn:100px;
+  --max-w:1200px;
+  --py:120px;
+}
+::selection{background:var(--accent);color:#fff}
+html{scroll-behavior:auto}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.7;
+  overflow-x:hidden;overflow-y:scroll;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+img{max-width:100%;display:block}
+a{color:inherit}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:rgba(0,0,0,0.02)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease;
+}
+.loader-content{text-align:center}
+.loader-logo{margin-bottom:24px}
+.loader-logo img{width:80px;height:auto}
+.loader-text{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--muted);margin-bottom:20px}
+.loader-bar-track{width:200px;height:3px;border-radius:2px;background:rgba(0,0,0,.08);margin:0 auto;overflow:hidden}
+.loader-bar-fill{height:100%;width:0%;border-radius:2px;background:var(--accent);transition:width .3s ease}
+
+/* ===== SCROLL PROGRESS ===== */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent);z-index:10000;transition:width .1s linear}
+
+/* ===== NAVBAR ===== */
+#navbar{position:fixed;top:12px;left:0;right:0;z-index:1000;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.nav-inner{max-width:100%;margin:0 auto;padding:12px 32px;display:flex;justify-content:space-between;align-items:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.nav-logo img{max-height:36px;width:auto}
+.nav-logo span{font-family:var(--serif);font-size:18px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:10px 22px!important;border-radius:var(--radius-btn);font-weight:500;font-size:14px!important;transition:all .3s!important;white-space:nowrap}
+.nav-cta:hover{background:#4a6640!important;transform:translateY(-1px)}
+#navbar.nav-scrolled .nav-inner{max-width:860px;background:rgba(247,244,239,.92);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--radius-btn);padding:10px 24px}
+@media(max-width:768px){
+  .nav-links .nav-link-item{display:none}
+  .nav-inner{padding:10px 16px}
+  #navbar.nav-scrolled .nav-inner{max-width:280px;padding:8px 16px}
+  .nav-cta{font-size:12px!important;padding:8px 16px!important}
+}
+
+/* ===== SCROLL ANIMATION ===== */
+.scroll-animation{height:350vh;position:relative}
+.scroll-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden}
+#frameCanvas{position:fixed;top:0;left:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .3s ease}
+@media(max-width:1024px){.scroll-animation{height:300vh}}
+@media(max-width:768px){.scroll-animation{height:250vh}}
+.annotation-card{position:absolute;bottom:8vh;left:5vw;max-width:360px;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:20px;padding:28px;color:var(--ink);opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;z-index:10}
+.annotation-card.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.card-number{font-size:.75rem;font-weight:500;color:var(--accent);margin-bottom:8px;letter-spacing:1px}
+.card-title{font-family:var(--serif);font-size:1.2rem;margin-bottom:8px}
+.card-desc{font-size:.9rem;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.card-stat-number{font-size:1.8rem;font-family:var(--serif);color:var(--accent)}
+.card-stat-label{font-size:.8rem;color:var(--muted);display:block}
+@media(max-width:768px){
+  .annotation-card{bottom:1.5vh;left:2vw;right:2vw;max-width:none;padding:12px 16px;display:flex;align-items:center;gap:12px}
+  .card-desc,.card-stat{display:none}
+  .card-number{margin-bottom:0}
+}
+
+/* ===== PHOTO PLACEHOLDER ===== */
+.photo-placeholder{background:var(--bg2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.8rem;text-align:center;padding:32px;overflow:hidden;position:relative;border:1px dashed rgba(0,0,0,.1)}
+.photo-placeholder[data-shape="tall"]{aspect-ratio:3/4}
+.photo-placeholder[data-shape="wide"]{aspect-ratio:16/10}
+
+/* ===== HERO ===== */
+#hero{position:relative;padding:160px 32px 120px;z-index:1;background:var(--bg)}
+.hero-grid{display:grid;grid-template-columns:55% 45%;gap:48px;max-width:var(--max-w);margin:0 auto;align-items:center}
+.hero-label{display:inline-block;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);background:rgba(92,122,78,.08);border-radius:var(--radius-btn);padding:6px 16px;margin-bottom:24px}
+.hero-headline{font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;margin-bottom:0}
+.reveal-line{display:block;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.16,1,.3,1)}
+.reveal-line.visible{clip-path:inset(0 0% 0 0)}
+.hero-sub{font-size:18px;color:var(--muted);line-height:1.7;max-width:480px;margin-top:24px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
+.btn-primary{background:var(--accent);color:#fff;padding:16px 36px;border-radius:var(--radius-btn);font-weight:500;font-size:16px;text-decoration:none;font-family:var(--sans);box-shadow:0 4px 24px rgba(92,122,78,.28);transition:all .3s;display:inline-block}
+.btn-primary:hover{background:#4a6640;transform:translateY(-2px)}
+.btn-secondary-outline{color:var(--accent);border:1.5px solid var(--accent);background:transparent;padding:16px 32px;border-radius:var(--radius-btn);font-weight:500;font-size:16px;text-decoration:none;font-family:var(--sans);transition:all .3s;display:inline-block}
+.btn-secondary-outline:hover{background:rgba(92,122,78,.06)}
+.trust-signals{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.trust-item i{color:var(--accent);font-size:16px}
+.hero-photo{width:100%}
+.hero-photo .photo-placeholder{border-radius:28px}
+@media(max-width:768px){
+  #hero{padding:120px 20px 80px}
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-buttons{justify-content:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .trust-signals{justify-content:center}
+  .hero-photo{max-width:360px;margin:0 auto}
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section{border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07);padding:22px 0;overflow:hidden;position:relative;z-index:1}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-track span{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--muted);padding:0 14px;flex-shrink:0}
+.marquee-track .sep{color:var(--accent2)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== NUMBERS ===== */
+#numbers{background:var(--bg2);padding:100px 32px;position:relative;z-index:1}
+.numbers-title{text-align:center;font-size:clamp(2rem,4vw,3rem);margin-bottom:0}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:900px;margin:64px auto 0;text-align:center}
+.counter-item .counter-value{font-family:var(--serif);font-size:72px;color:var(--accent);line-height:1;display:block;transition:text-shadow .3s}
+.counter-item .counter-value.counting{text-shadow:0 0 24px rgba(92,122,78,.3)}
+.counter-item .counter-suffix{font-family:var(--serif);font-size:48px;color:var(--accent)}
+.counter-item .counter-label{font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:12px;display:block}
+@media(max-width:768px){.numbers-grid{grid-template-columns:repeat(2,1fr);gap:32px}.counter-item .counter-value{font-size:48px}.counter-item .counter-suffix{font-size:32px}}
+
+/* ===== FEATURES ===== */
+#beneficios{background:var(--bg);padding:var(--py) 32px;position:relative;z-index:1}
+.section-title{text-align:center;font-size:clamp(2rem,4vw,3rem)}
+.section-sub{text-align:center;font-size:18px;color:var(--muted);max-width:500px;margin:16px auto 0}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:var(--max-w);margin:64px auto 0}
+.feature-card{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:36px;box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .35s ease,box-shadow .35s ease}
+.feature-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.10)}
+.feature-icon{width:48px;height:48px;border-radius:12px;background:rgba(92,122,78,.08);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.feature-icon i{font-size:28px}
+.feature-card h3{font-size:22px;margin-bottom:12px}
+.feature-card p{font-size:15px;color:var(--muted);line-height:1.7}
+.feature-link{display:inline-block;margin-top:20px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;position:relative}
+.feature-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.feature-link:hover::after{width:100%}
+@media(max-width:1024px){.features-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.features-grid{grid-template-columns:1fr}}
+
+/* ===== QUALIDADE ===== */
+#qualidade{background:var(--bg2);padding:var(--py) 32px;position:relative;z-index:1;overflow:hidden}
+.qualidade-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:var(--max-w);margin:0 auto;align-items:center}
+.qualidade-label{font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent)}
+.qualidade-headline{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,4vw,3.2rem);line-height:1.2;margin-top:16px}
+.qualidade-body{font-size:17px;color:var(--muted);line-height:1.8;max-width:480px;margin-top:24px}
+.qualidade-checks{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:14px}
+.qualidade-checks li{display:flex;align-items:center;gap:10px;font-weight:500;font-size:16px}
+.qualidade-checks li i{color:var(--accent);font-size:20px;flex-shrink:0}
+.btn-underline{display:inline-block;margin-top:36px;font-family:var(--serif);font-size:20px;color:var(--ink);text-decoration:none;position:relative}
+.btn-underline::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.btn-underline:hover::after{width:100%}
+.parallax-wrap{height:520px;border-radius:28px;overflow:hidden;position:relative}
+.parallax-wrap .photo-placeholder{border-radius:0;height:130%;position:absolute;width:100%;top:0;left:0}
+@media(max-width:768px){.qualidade-grid{grid-template-columns:1fr;gap:48px}.parallax-wrap{height:400px}}
+
+/* ===== COMO FUNCIONA ===== */
+#como-funciona{background:var(--bg);padding:var(--py) 32px;position:relative;z-index:1}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:var(--max-w);margin:64px auto 0;text-align:center}
+.step-card .step-num{font-family:var(--serif);font-style:italic;font-size:80px;color:var(--accent2);opacity:.3;line-height:1;margin-bottom:16px}
+.step-icon{width:72px;height:72px;border-radius:50%;background:rgba(92,122,78,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.step-icon i{font-size:40px;color:var(--accent)}
+.step-card h3{font-size:22px;margin-bottom:12px}
+.step-card p{font-size:15px;color:var(--muted);line-height:1.7;max-width:280px;margin:0 auto}
+.steps-cta{text-align:center;margin-top:56px}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr;gap:48px}}
+
+/* ===== CATEGORIAS ===== */
+#categorias{background:var(--bg2);padding:var(--py) 32px;position:relative;z-index:1}
+.categorias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--max-w);margin:56px auto 0}
+.cat-card{border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--ink);background:var(--surface);box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s;display:block}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.12)}
+.cat-photo{width:100%;height:220px;border-radius:0}
+.cat-content{padding:24px}
+.cat-label{display:inline-block;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+.cat-content h3{font-family:var(--serif);font-size:20px;margin:8px 0}
+.cat-arrow{font-size:14px;font-weight:500;color:var(--accent)}
+@media(max-width:1024px){.categorias-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.categorias-grid{grid-template-columns:1fr}}
+
+/* ===== PARALLAX STATEMENT ===== */
+#statement{background:var(--ink);padding:100px 32px;text-align:center;position:relative;z-index:1;overflow:hidden}
+#statement .orb{position:absolute;width:600px;height:600px;background:var(--accent);border-radius:50%;filter:blur(300px);opacity:.08;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+#statement h2{font-family:var(--serif);font-style:italic;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;max-width:800px;margin:0 auto;line-height:1.15;position:relative}
+#statement .stmt-sub{font-size:18px;color:rgba(255,255,255,.60);max-width:520px;margin:20px auto 0;line-height:1.7;position:relative}
+#statement .stmt-cta{margin-top:40px;position:relative}
+
+/* ===== DEPOIMENTOS ===== */
+#depoimentos{background:var(--bg);padding:var(--py) 32px;position:relative;z-index:1}
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:var(--max-w);margin:56px auto 0}
+.depo-card{background:var(--surface);border-radius:var(--radius);padding:36px;border:1px solid rgba(0,0,0,.06);box-shadow:0 2px 20px rgba(0,0,0,.04)}
+.depo-stars{color:var(--accent2);font-size:14px;margin-bottom:20px;letter-spacing:2px}
+.depo-quote{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);line-height:1.7;margin-bottom:24px}
+.depo-divider{height:1px;background:rgba(0,0,0,.07);margin-bottom:20px}
+.depo-author{display:flex;align-items:center;gap:16px}
+.depo-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--muted);flex-shrink:0}
+.depo-name{font-weight:600;font-size:15px;display:block}
+.depo-city{font-size:13px;color:var(--muted);display:block}
+@media(max-width:768px){
+  .depo-grid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:16px}
+  .depo-grid::-webkit-scrollbar{display:none}
+  .depo-card{min-width:300px;scroll-snap-align:start;flex-shrink:0}
+}
+
+/* ===== FAQ ===== */
+#faq{background:var(--bg2);padding:var(--py) 32px;position:relative;z-index:1}
+.faq-list{max-width:720px;margin:56px auto 0}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.08)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;font-weight:600;font-size:17px;color:var(--ink);-webkit-user-select:none;user-select:none;gap:16px}
+.faq-q i{color:var(--accent);font-size:20px;flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-a-inner{padding:0 0 24px;font-size:16px;color:var(--muted);line-height:1.75}
+.faq-item.open .faq-a{max-height:300px}
+
+/* ===== CTA FINALE ===== */
+#cta-final{background:var(--ink);padding:140px 32px;text-align:center;position:relative;z-index:1;overflow:hidden}
+#cta-final .cta-orb{position:absolute;width:600px;height:600px;background:var(--accent);border-radius:50%;filter:blur(300px);opacity:.10;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-label{display:inline-block;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);background:rgba(92,122,78,.15);border-radius:var(--radius-btn);padding:6px 16px;position:relative}
+.cta-headline{font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;margin-top:20px;line-height:1.15;position:relative}
+.cta-body{font-size:18px;color:rgba(255,255,255,.60);max-width:520px;margin:20px auto 0;line-height:1.75;position:relative}
+.btn-cta-large{display:inline-block;margin-top:40px;background:var(--accent);color:#fff;padding:18px 48px;border-radius:var(--radius-btn);font-weight:500;font-size:18px;text-decoration:none;box-shadow:0 8px 32px rgba(92,122,78,.35);transition:all .3s;position:relative}
+.btn-cta-large:hover{background:#4a6640;transform:translateY(-3px);box-shadow:0 12px 40px rgba(92,122,78,.45)}
+.cta-note{font-size:13px;color:rgba(255,255,255,.35);margin-top:16px;position:relative}
+
+/* ===== FOOTER ===== */
+footer{background:var(--footer-bg);padding:80px 32px 48px;position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.07)}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}
+.footer-brand-block{display:flex;flex-direction:column;gap:8px}
+.footer-logo{display:flex;align-items:center;gap:10px}
+.footer-logo img{max-height:32px;width:auto;filter:brightness(10)}
+.footer-logo span{font-family:var(--serif);font-size:18px;color:#fff}
+.footer-tagline{font-size:14px;color:rgba(255,255,255,.45);margin-top:4px}
+.footer-social{margin-top:16px}
+.footer-social a{color:rgba(255,255,255,.50);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:6px;font-size:14px}
+.footer-social a:hover{color:#fff}
+.footer-social a i{font-size:20px}
+.footer-col h4{font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.40);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.60);text-decoration:none;padding:4px 0;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-col p{font-size:14px;color:rgba(255,255,255,.60);line-height:1.6;padding:4px 0}
+.footer-col .footer-contact-item{display:flex;align-items:center;gap:8px;padding:4px 0}
+.footer-col .footer-contact-item i{font-size:18px;color:rgba(255,255,255,.45)}
+.footer-col .footer-contact-item a{display:inline;padding:0}
+.footer-badge{display:inline-block;font-size:12px;color:rgba(255,255,255,.70);background:rgba(92,122,78,.20);padding:6px 14px;border-radius:var(--radius-btn);margin-top:16px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:48px;padding-top:24px;text-align:center}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.30)}
+@media(max-width:1024px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+/* ===== ANIMATIONS ===== */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up.delay-1{transition-delay:.12s}
+.fade-up.delay-2{transition-delay:.24s}
+.fade-up.delay-3{transition-delay:.36s}
+.fade-up.delay-4{transition-delay:.48s}
+.fade-up.delay-5{transition-delay:.60s}
+.text-reveal{clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.16,1,.3,1)}
+.text-reveal.visible{clip-path:inset(0 0% 0 0)}
+.stagger-card{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.stagger-card.visible{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo"><img src="logo.png" alt="Inova Vit"></div>
+    <p class="loader-text">Carregando...</p>
+    <div class="loader-bar-track"><div class="loader-bar-fill" id="loaderBar"></div></div>
+  </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress"></div>
+
+<!-- [B] NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="logo.png" alt="Inova Vit"><span>Inova Vit</span></a>
+    <div class="nav-links">
+      <a href="#beneficios" class="nav-link-item">Benefícios</a>
+      <a href="#categorias" class="nav-link-item">Categorias</a>
+      <a href="#depoimentos" class="nav-link-item">Depoimentos</a>
+      <a href="https://www.inovavit.com.br/" class="nav-cta">Conheça Nossos Suplementos →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- [A] SCROLL ANIMATION -->
+<section class="scroll-animation">
+  <div class="scroll-sticky">
+    <canvas id="frameCanvas"></canvas>
+    <div class="annotation-card" data-show="0.15" data-hide="0.34">
+      <div class="card-number">PASSO 1</div>
+      <div class="card-body">
+        <h3 class="card-title">Ingredientes Naturais</h3>
+        <p class="card-desc">Cada cápsula é formulada com ativos botânicos selecionados para máxima absorção e eficácia.</p>
+        <div class="card-stat"><span class="card-stat-number">100%</span><span class="card-stat-label">Natural</span></div>
+      </div>
+    </div>
+    <div class="annotation-card" data-show="0.35" data-hide="0.54">
+      <div class="card-number">PASSO 2</div>
+      <div class="card-body">
+        <h3 class="card-title">Fórmula Precisa</h3>
+        <p class="card-desc">Doses calibradas cientificamente para garantir o efeito certo no momento certo.</p>
+        <div class="card-stat"><span class="card-stat-number">60 caps</span><span class="card-stat-label">Por frasco</span></div>
+      </div>
+    </div>
+    <div class="annotation-card" data-show="0.55" data-hide="0.74">
+      <div class="card-number">PASSO 3</div>
+      <div class="card-body">
+        <h3 class="card-title">Resultado Real</h3>
+        <p class="card-desc">Clientes relatam mais disposição e energia já nas primeiras semanas de uso.</p>
+        <div class="card-stat"><span class="card-stat-number">30 dias</span><span class="card-stat-label">Para sentir</span></div>
+      </div>
+    </div>
+    <div class="annotation-card" data-show="0.75" data-hide="0.95">
+      <div class="card-number">QUALIDADE</div>
+      <div class="card-body">
+        <h3 class="card-title">Seguro e Certificado</h3>
+        <p class="card-desc">Produzido sob rigorosos padrões de qualidade. Sua saúde merece o melhor.</p>
+        <div class="card-stat"><span class="card-stat-number">97%</span><span class="card-stat-label">Satisfação</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [C] HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-label fade-up">Fórmulas Desenvolvidas por Especialistas</div>
+      <h1 class="fade-up" style="font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:400;line-height:1.05;color:var(--ink)">Seu corpo pede mais.<br>Seu dia exige mais.<br>Agora você tem.</h1>
+      <p class="hero-sub fade-up delay-3">Suplementos com ingredientes rastreados e dosagens que funcionam — para quem cansou de adivinhar o que tomar.</p>
+      <div class="hero-buttons fade-up delay-4">
+        <a href="https://api.whatsapp.com/send?phone=5511913997728&text=Olá!%20Quero%20descobrir%20o%20suplemento%20ideal%20para%20mim." class="btn-primary">Descubra o Seu Suplemento no WhatsApp</a>
+        <a href="https://www.inovavit.com.br/" class="btn-secondary-outline">Ver todos os produtos →</a>
+      </div>
+      <div class="trust-signals fade-up delay-5">
+        <span class="trust-item"><i class="ph-check-circle"></i> Registro ANVISA ativo</span>
+        <span class="trust-item"><i class="ph-check-circle"></i> Frete grátis acima R$199</span>
+        <span class="trust-item"><i class="ph-check-circle"></i> Atendimento humano no WhatsApp</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="hero-produto.jpg" alt="Frasco principal Inova Vit" style="width:100%;height:560px;object-fit:cover;border-radius:28px">
+    </div>
+  </div>
+</section>
+
+<!-- [D] MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee-track">
+    <span>Ingredientes Rastreados e Testados</span><span class="sep">✦</span>
+    <span>Dosagens com Respaldo Científico</span><span class="sep">✦</span>
+    <span>Sem Corantes Artificiais</span><span class="sep">✦</span>
+    <span>Entrega para Todo Brasil</span><span class="sep">✦</span>
+    <span>Fórmulas Registradas na ANVISA</span><span class="sep">✦</span>
+    <span>Resultados em 30 Dias</span><span class="sep">✦</span>
+    <span>Atendimento Humano e Rápido</span><span class="sep">✦</span>
+    <span>8 Anos de Mercado</span><span class="sep">✦</span>
+    <span>Ingredientes Rastreados e Testados</span><span class="sep">✦</span>
+    <span>Dosagens com Respaldo Científico</span><span class="sep">✦</span>
+    <span>Sem Corantes Artificiais</span><span class="sep">✦</span>
+    <span>Entrega para Todo Brasil</span><span class="sep">✦</span>
+    <span>Fórmulas Registradas na ANVISA</span><span class="sep">✦</span>
+    <span>Resultados em 30 Dias</span><span class="sep">✦</span>
+    <span>Atendimento Humano e Rápido</span><span class="sep">✦</span>
+    <span>8 Anos de Mercado</span><span class="sep">✦</span>
+  </div>
+</section>
+
+<!-- [E] NUMBERS -->
+<section id="numbers">
+  <h2 class="numbers-title fade-up">Números que falam por quem já confia</h2>
+  <div class="numbers-grid">
+    <div class="counter-item" data-target="15000" data-suffix="+" data-stagger="0">
+      <span class="counter-value">0</span>
+      <span class="counter-label">Clientes ativos em todo o Brasil</span>
+    </div>
+    <div class="counter-item" data-target="40000" data-suffix="+" data-stagger="1">
+      <span class="counter-value">0</span>
+      <span class="counter-label">Frascos entregues com rastreio</span>
+    </div>
+    <div class="counter-item" data-target="97" data-suffix="%" data-stagger="2">
+      <span class="counter-value">0</span>
+      <span class="counter-label">De aprovação nas avaliações</span>
+    </div>
+    <div class="counter-item" data-target="8" data-suffix=" anos" data-stagger="3">
+      <span class="counter-value">0</span>
+      <span class="counter-label">Cuidando da sua saúde</span>
+    </div>
+  </div>
+</section>
+
+<!-- [F] FEATURES -->
+<section id="beneficios">
+  <h2 class="section-title fade-up">O que muda quando você suplementa certo</h2>
+  <div class="features-grid">
+    <div class="feature-card stagger-card" data-stagger="0">
+      <div class="feature-icon"><i class="ph-lightning" style="color:var(--accent2)"></i></div>
+      <h3>Mais Energia e Disposição</h3>
+      <p>Acorda já cansado? Vitaminas do complexo B e minerais como ferro e magnésio ajudam seu corpo a transformar alimento em energia real — aquela que dura o dia inteiro, não só o primeiro café.</p>
+      <a href="https://www.inovavit.com.br/vitamina/disposicao-e-vitalidade" class="feature-link">Explorar categoria →</a>
+    </div>
+    <div class="feature-card stagger-card" data-stagger="1">
+      <div class="feature-icon"><i class="ph-shield-check" style="color:var(--accent)"></i></div>
+      <h3>Imunidade Reforçada</h3>
+      <p>Vitamina C, zinco e vitamina D trabalham juntos para manter suas defesas preparadas. Menos dias parado, mais dias vivendo no ritmo que você escolhe.</p>
+      <a href="https://www.inovavit.com.br/vitamina/imunidade" class="feature-link">Explorar categoria →</a>
+    </div>
+    <div class="feature-card stagger-card" data-stagger="2">
+      <div class="feature-icon"><i class="ph-sparkle" style="color:var(--accent2)"></i></div>
+      <h3>Pele, Cabelo e Unhas</h3>
+      <p>Biotina, colágeno e selênio nutrem de dentro para fora. O resultado aparece no espelho — e nos elogios que você nem esperava.</p>
+      <a href="https://www.inovavit.com.br/vitamina/corpo-e-pele-radiantes" class="feature-link">Explorar categoria →</a>
+    </div>
+    <div class="feature-card stagger-card" data-stagger="3">
+      <div class="feature-icon"><i class="ph-brain" style="color:var(--accent)"></i></div>
+      <h3>Foco e Cognição</h3>
+      <p>Ômega-3 e vitaminas do complexo B alimentam a concentração e a clareza mental. Para quem precisa pensar bem, decidir rápido e render até o fim do expediente.</p>
+      <a href="https://www.inovavit.com.br/vitamina/cognicao-e-mente" class="feature-link">Explorar categoria →</a>
+    </div>
+    <div class="feature-card stagger-card" data-stagger="4">
+      <div class="feature-icon"><i class="ph-scales" style="color:var(--accent2)"></i></div>
+      <h3>Controle de Peso</h3>
+      <p>Cromo, fibras e compostos termogênicos que ajudam seu metabolismo a funcionar como deveria — sem fórmulas milagrosas, com ciência de verdade.</p>
+      <a href="https://www.inovavit.com.br/vitamina/emagrecedor" class="feature-link">Explorar categoria →</a>
+    </div>
+    <div class="feature-card stagger-card" data-stagger="5">
+      <div class="feature-icon"><i class="ph-truck" style="color:var(--accent)"></i></div>
+      <h3>Entrega Rápida para Todo Brasil</h3>
+      <p>Pediu, rastreou, chegou. Logística com envio em até 24h úteis e acompanhamento em tempo real até a sua porta.</p>
+      <a href="https://www.inovavit.com.br/envio" class="feature-link">Explorar categoria →</a>
+    </div>
+  </div>
+</section>
+
+<!-- [G] QUALIDADE -->
+<section id="qualidade">
+  <div class="qualidade-grid">
+    <div class="qualidade-text">
+      <div class="qualidade-label fade-up">Nosso Compromisso com Você</div>
+      <h2 style="font-family:var(--serif);font-style:italic;font-size:clamp(2rem,4vw,3.2rem);color:var(--ink);line-height:1.1;margin-bottom:24px">Qualidade não é detalhe,<br>é o que você coloca no corpo.</h2>
+      <p class="qualidade-body fade-up delay-2">Cada lote passa por análise laboratorial independente antes de chegar até você. Trabalhamos com matérias-primas certificadas e dosagens que seguem estudos clínicos — não o mínimo permitido por lei. Porque quem leva saúde a sério merece transparência em cada cápsula.</p>
+      <ul class="qualidade-checks fade-up delay-3">
+        <li><i class="ph-check-circle"></i> Registro ANVISA ativo</li>
+        <li><i class="ph-check-circle"></i> Laudo laboratorial por lote</li>
+        <li><i class="ph-check-circle"></i> Matéria-prima certificada</li>
+      </ul>
+      <a href="https://www.inovavit.com.br/" class="btn-underline fade-up delay-4">Ver catálogo completo →</a>
+    </div>
+    <div class="parallax-wrap">
+      <img src="ingrediente-macro.jpg" alt="Ingrediente natural macro" data-parallax="250" style="width:100%;height:130%;object-fit:cover;position:absolute;top:0;left:0">
+    </div>
+  </div>
+</section>
+
+<!-- [H] COMO FUNCIONA -->
+<section id="como-funciona">
+  <h2 class="section-title fade-up">Três passos para começar</h2>
+  <p class="section-sub fade-up delay-1">Simples assim: você fala com a gente, recebe a indicação certa e sente a diferença.</p>
+  <div class="steps-grid">
+    <div class="step-card stagger-card" data-stagger="0">
+      <div class="step-num">01</div>
+      <div class="step-icon"><i class="ph-chat-circle-text"></i></div>
+      <h3>Fale com nosso time</h3>
+      <p>Mande uma mensagem no WhatsApp e descreva como você está se sentindo — cansaço, foco, peso, imunidade.</p>
+    </div>
+    <div class="step-card stagger-card" data-stagger="1">
+      <div class="step-num">02</div>
+      <div class="step-icon"><i class="ph-test-tube"></i></div>
+      <h3>Receba a indicação certa</h3>
+      <p>Nossa equipe analisa seu caso e indica os suplementos ideais para você — sem suposições, sem empurrar produto.</p>
+    </div>
+    <div class="step-card stagger-card" data-stagger="2">
+      <div class="step-num">03</div>
+      <div class="step-icon"><i class="ph-trend-up"></i></div>
+      <h3>Sinta a diferença</h3>
+      <p>Com a suplementação certa, você começa a notar resultados reais em poucas semanas.</p>
+    </div>
+  </div>
+  <div class="steps-cta fade-up">
+    <a href="https://api.whatsapp.com/send?phone=5511913997728&text=Olá!%20Quero%20descobrir%20o%20suplemento%20ideal%20para%20mim." class="btn-primary">Quero Minha Indicação Personalizada →</a>
+  </div>
+</section>
+
+<!-- [I] CATEGORIAS -->
+<section id="categorias">
+  <h2 class="section-title fade-up">Encontre o suplemento certo para você</h2>
+  <p class="section-sub fade-up delay-1">Navegue por categoria e descubra fórmulas pensadas para cada necessidade.</p>
+  <div class="categorias-grid">
+    <a href="https://www.inovavit.com.br/vitamina" class="cat-card stagger-card" data-stagger="0">
+      <img src="cat-vitaminas.jpg" alt="Vitaminas Essenciais" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Mais vendidos</span><h3>Vitaminas Essenciais</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+    <a href="https://www.inovavit.com.br/mulher" class="cat-card stagger-card" data-stagger="1">
+      <img src="cat-mulher.jpg" alt="Linha Mulher" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Linha especial</span><h3>Linha Mulher</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+    <a href="https://www.inovavit.com.br/combos" class="cat-card stagger-card" data-stagger="2">
+      <img src="cat-combos.jpg" alt="Combos e Kits" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Melhor custo-benefício</span><h3>Combos &amp; Kits</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+    <a href="https://www.inovavit.com.br/oleosos" class="cat-card stagger-card" data-stagger="3">
+      <img src="cat-oleosos.jpg" alt="Oleosos e Ômega" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Alta absorção</span><h3>Oleosos &amp; Ômega</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+    <a href="https://www.inovavit.com.br/vitamina/disposicao-e-vitalidade" class="cat-card stagger-card" data-stagger="4">
+      <img src="cat-disposicao.jpg" alt="Disposição e Vitalidade" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Para o dia a dia</span><h3>Disposição &amp; Vitalidade</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+    <a href="https://www.inovavit.com.br/lancamentos" class="cat-card stagger-card" data-stagger="5">
+      <img src="cat-lancamentos.jpg" alt="Lançamentos" class="cat-photo" style="height:200px;width:100%;object-fit:cover">
+      <div class="cat-content"><span class="cat-label">Chegando agora</span><h3>Lançamentos</h3><span class="cat-arrow">Ver produtos →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- [J] PARALLAX STATEMENT -->
+<section id="statement" style="padding:140px 32px">
+  <div class="orb"></div>
+  <span style="display:inline-block;background:rgba(92,122,78,0.25);color:rgba(255,255,255,0.80);font-family:var(--sans);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;padding:6px 16px;border-radius:100px;margin-bottom:24px">Falta só um passo</span>
+  <h2 style="font-family:var(--serif);font-style:italic;color:#FFFFFF;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.05;max-width:800px;margin:0 auto 20px">Não escolha sozinho.<br>A gente te ajuda — de graça.</h2>
+  <p class="stmt-sub fade-up delay-1">Mande uma mensagem no WhatsApp e receba uma orientação personalizada em minutos.</p>
+  <div class="stmt-cta fade-up delay-2">
+    <a href="https://api.whatsapp.com/send?phone=5511913997728&text=Olá!%20Quero%20descobrir%20o%20suplemento%20ideal%20para%20mim." class="btn-primary" style="background:var(--accent);color:#fff">Falar no WhatsApp →</a>
+  </div>
+</section>
+
+<!-- [K] DEPOIMENTOS -->
+<section id="depoimentos">
+  <h2 class="section-title text-reveal">Quem prova, recomenda.</h2>
+  <p class="section-sub fade-up delay-1">Histórias reais de quem já sente a diferença.</p>
+  <div class="depo-grid">
+    <div class="depo-card stagger-card" data-stagger="0">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-quote">"Tentei três marcas antes e nenhuma fazia diferença. Com a Inova Vit, em duas semanas eu já acordava diferente — com vontade de levantar, sem aquele peso no corpo."</p>
+      <div class="depo-divider"></div>
+      <div class="depo-author"><div class="depo-avatar">F</div><div><span class="depo-name">Fernanda F.</span><span class="depo-city">São Paulo</span></div></div>
+    </div>
+    <div class="depo-card stagger-card" data-stagger="1">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-quote">"Minha imunidade vivia no chão. Desde que comecei a tomar a vitamina D e o zinco da Inova Vit, passei o inverno inteiro sem ficar doente. Primeira vez em anos."</p>
+      <div class="depo-divider"></div>
+      <div class="depo-author"><div class="depo-avatar">L</div><div><span class="depo-name">Lucas Q.</span><span class="depo-city">Belo Horizonte</span></div></div>
+    </div>
+    <div class="depo-card stagger-card" data-stagger="2">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-quote">"Eu não sabia nem por onde começar. Mandei mensagem no WhatsApp, me indicaram certinho e o resultado no cabelo e nas unhas apareceu rápido."</p>
+      <div class="depo-divider"></div>
+      <div class="depo-author"><div class="depo-avatar">M</div><div><span class="depo-name">Mariana G.</span><span class="depo-city">Rio de Janeiro</span></div></div>
+    </div>
+    <div class="depo-card stagger-card" data-stagger="3">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-quote">"Trabalho com código o dia inteiro e no meio da tarde meu cérebro já não funcionava. O ômega-3 mudou isso — foco até o fim do dia, sem café extra."</p>
+      <div class="depo-divider"></div>
+      <div class="depo-author"><div class="depo-avatar">T</div><div><span class="depo-name">Thomaz B.</span><span class="depo-city">Curitiba</span></div></div>
+    </div>
+    <div class="depo-card stagger-card" data-stagger="4">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-quote">"Compro online e chega sempre rápido. Mas o que me fez ficar foi a transparência: me mandaram o laudo do lote sem eu pedir."</p>
+      <div class="depo-divider"></div>
+      <div class="depo-author"><div class="depo-avatar">M</div><div><span class="depo-name">Maria E.</span><span class="depo-city">Porto Alegre</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- [L] FAQ -->
+<section id="faq">
+  <h2 class="section-title fade-up">Perguntas frequentes</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Os suplementos da Inova Vit têm registro na ANVISA?<i class="ph-plus-circle"></i></div>
+      <div class="faq-a"><div class="faq-a-inner">Sim. Todos os nossos produtos possuem registro ou notificação ativa junto à ANVISA. Você pode solicitar o número de registro diretamente pelo nosso WhatsApp.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Como sei qual suplemento é ideal para mim?<i class="ph-plus-circle"></i></div>
+      <div class="faq-a"><div class="faq-a-inner">Fale com nosso time pelo WhatsApp. Em poucos minutos, com base no seu objetivo e rotina, indicamos a combinação certa — sem custo e sem compromisso.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Qual o prazo de entrega?<i class="ph-plus-circle"></i></div>
+      <div class="faq-a"><div class="faq-a-inner">Enviamos em até 24h úteis após a confirmação do pagamento. O prazo de entrega varia por região, mas a média é de 3 a 8 dias úteis. O rastreio é enviado por e-mail assim que o pedido sai.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso pagar com PIX?<i class="ph-plus-circle"></i></div>
+      <div class="faq-a"><div class="faq-a-inner">Sim, e tem vantagem: pagando com PIX você recebe 5% de desconto automático no valor total do pedido.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">E se eu não gostar do produto?<i class="ph-plus-circle"></i></div>
+      <div class="faq-a"><div class="faq-a-inner">Temos política de troca e devolução. Entre em contato pelo WhatsApp ou e-mail dentro do prazo legal e cuidamos de tudo.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- [M] CTA FINALE -->
+<section id="cta-final">
+  <div class="cta-orb"></div>
+  <div class="cta-label fade-up">Falta só um passo</div>
+  <h2 class="cta-headline text-reveal" style="margin-top:20px">Não escolha sozinho.<br>A gente te ajuda — de graça.</h2>
+  <p class="cta-body fade-up delay-2">Mande uma mensagem no WhatsApp e receba uma orientação personalizada em minutos. Sem compromisso, sem robô, sem pressão — só uma conversa com quem entende de suplementação.</p>
+  <a href="https://api.whatsapp.com/send?phone=5511913997728&text=Olá!%20Quero%20descobrir%20o%20suplemento%20ideal%20para%20mim." class="btn-cta-large fade-up delay-3">Falar no WhatsApp Agora →</a>
+  <p class="cta-note fade-up delay-4">Atendimento humano · Seg a Sex, 9h–18h · (11) 91399-7728</p>
+</section>
+
+<!-- [N] FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand-block">
+        <div class="footer-logo"><img src="logo.png" alt="Inova Vit"><span>Inova Vit</span></div>
+        <p class="footer-tagline">Suplementação com ciência e cuidado.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/inovavitoficial"><i class="ph-instagram-logo"></i> @inovavitoficial</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Categorias</h4>
+        <a href="https://www.inovavit.com.br/vitamina">Vitaminas</a>
+        <a href="https://www.inovavit.com.br/mulher">Linha Mulher</a>
+        <a href="https://www.inovavit.com.br/combos">Combos &amp; Kits</a>
+        <a href="https://www.inovavit.com.br/oleosos">Oleosos &amp; Ômega</a>
+        <a href="https://www.inovavit.com.br/lancamentos">Lançamentos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <a href="https://www.inovavit.com.br/como-comprar">Como Comprar</a>
+        <a href="https://www.inovavit.com.br/envio">Prazo de Entrega</a>
+        <a href="https://www.inovavit.com.br/trocas-e-devolucoes">Trocas e Devoluções</a>
+        <a href="https://www.inovavit.com.br/privacidade">Política de Privacidade</a>
+        <a href="https://www.inovavit.com.br/contato">Fale Conosco</a>
+      </div>
+      <div class="footer-col">
+        <h4>Atendimento</h4>
+        <div class="footer-contact-item"><i class="ph-whatsapp-logo"></i><a href="https://api.whatsapp.com/send?phone=5511913997728">(11) 91399-7728</a></div>
+        <div class="footer-contact-item"><i class="ph-envelope-simple"></i><a href="mailto:inovavitecomm@gmail.com">inovavitecomm@gmail.com</a></div>
+        <p>Seg – Sex, 8h às 17h30</p>
+        <span class="footer-badge">Frete grátis acima R$199</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Inova Vit Produtos Naturais LTDA. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== LOADER + FRAME PRELOAD ===== */
+  var FRAME_COUNT=76,frames=[],loadedFrames=0;
+  var loaderBar=document.getElementById('loaderBar');
+  var loader=document.getElementById('loader');
+  var canvas=document.getElementById('frameCanvas');
+  var ctx=canvas.getContext('2d');
+  var currentFrame=-1,ticking=false;
+
+  function resizeCanvas(){
+    var dpr=window.devicePixelRatio||1;
+    canvas.width=window.innerWidth*dpr;
+    canvas.height=window.innerHeight*dpr;
+    canvas.style.width=window.innerWidth+'px';
+    canvas.style.height=window.innerHeight+'px';
+    if(currentFrame>=0)drawFrame(currentFrame);
+  }
+
+  function drawFrame(index){
+    var img=frames[index];
+    if(!img||!img.complete)return;
+    var cw=canvas.width,ch=canvas.height;
+    ctx.clearRect(0,0,cw,ch);
+    var imgRatio=img.naturalWidth/img.naturalHeight;
+    var canvasRatio=cw/ch;
+    var drawW,drawH,drawX,drawY;
+    if(window.innerWidth>768){
+      if(canvasRatio>imgRatio){drawW=cw;drawH=cw/imgRatio}else{drawH=ch;drawW=ch*imgRatio}
+      drawX=(cw-drawW)/2;drawY=(ch-drawH)/2;
+    }else{
+      var zoom=1.2;
+      if(canvasRatio>imgRatio){drawH=ch*zoom;drawW=drawH*imgRatio}else{drawW=cw*zoom;drawH=drawW/imgRatio}
+      drawX=(cw-drawW)/2;drawY=(ch-drawH)/2;
+    }
+    ctx.drawImage(img,drawX,drawY,drawW,drawH);
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize',resizeCanvas);
+
+  for(var i=1;i<=FRAME_COUNT;i++){
+    var img=new Image();
+    img.src='frames/frame_'+String(i).padStart(4,'0')+'.jpg';
+    img.onload=function(){
+      loadedFrames++;
+      loaderBar.style.width=(loadedFrames/FRAME_COUNT)*100+'%';
+      if(loadedFrames===FRAME_COUNT){
+        loader.style.opacity='0';
+        setTimeout(function(){loader.style.display='none'},600);
+        drawFrame(0);currentFrame=0;
+      }
+    };
+    frames.push(img);
+  }
+
+  /* ===== SCROLL ANIMATION + ANNOTATION CARDS ===== */
+  var scrollSection=document.querySelector('.scroll-animation');
+  var scrollProgress=document.getElementById('scrollProgress');
+  var navbar=document.getElementById('navbar');
+  var annCards=document.querySelectorAll('.annotation-card');
+  var SNAP_ZONES=[],HOLD_DURATION=600,isSnapping=false;
+
+  annCards.forEach(function(card){
+    SNAP_ZONES.push({show:parseFloat(card.dataset.show),hide:parseFloat(card.dataset.hide),snapped:false});
+  });
+
+  function updateCards(progress){
+    annCards.forEach(function(card,i){
+      var zone=SNAP_ZONES[i];
+      var visible=progress>=zone.show&&progress<=zone.hide;
+      card.classList.toggle('visible',visible);
+      if(visible&&!zone.snapped&&!isSnapping){
+        zone.snapped=true;isSnapping=true;
+        var scrollTarget=scrollSection.offsetTop+zone.show*(scrollSection.offsetHeight-window.innerHeight);
+        window.scrollTo({top:scrollTarget});
+        setTimeout(function(){isSnapping=false},HOLD_DURATION);
+      }
+      if(!visible)zone.snapped=false;
+    });
+  }
+
+  /* ===== MAIN SCROLL HANDLER ===== */
+  window.addEventListener('scroll',function(){
+    var totalScroll=document.body.scrollHeight-window.innerHeight;
+    scrollProgress.style.width=(window.scrollY/totalScroll)*100+'%';
+    navbar.classList.toggle('nav-scrolled',window.scrollY>80);
+
+    if(!ticking){
+      requestAnimationFrame(function(){
+        var rect=scrollSection.getBoundingClientRect();
+        var scrollableHeight=scrollSection.offsetHeight-window.innerHeight;
+        var progress=Math.min(1,Math.max(0,-rect.top/scrollableHeight));
+        canvas.style.opacity=(rect.top<=0&&rect.bottom>=window.innerHeight)?'1':'0';
+        var frameIndex=Math.min(FRAME_COUNT-1,Math.floor(progress*FRAME_COUNT));
+        if(frameIndex!==currentFrame&&loadedFrames===FRAME_COUNT){currentFrame=frameIndex;drawFrame(frameIndex)}
+        updateCards(progress);
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+
+  /* ===== ANIMATIONS — IntersectionObserver ===== */
+  var animObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');animObs.unobserve(e.target)}});
+  },{threshold:.15});
+
+  document.querySelectorAll('.fade-up,.text-reveal,.reveal-line').forEach(function(el){animObs.observe(el)});
+
+  /* Stagger Cards */
+  var staggerObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.stagger-card').forEach(function(card){
+          var delay=parseInt(card.dataset.stagger||0)*120;
+          setTimeout(function(){card.classList.add('visible')},delay);
+        });
+        staggerObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.1});
+
+  document.querySelectorAll('.features-grid,.categorias-grid,.depo-grid,.steps-grid').forEach(function(el){staggerObs.observe(el)});
+
+  /* ===== COUNTER ===== */
+  function easeOutExpo(t){return t===1?1:1-Math.pow(2,-10*t)}
+  function fmtNum(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+
+  function countUp(el,target,suffix,dur){
+    dur=dur||2000;var start=performance.now();
+    el.classList.add('counting');
+    function upd(now){
+      var p=Math.min((now-start)/dur,1);
+      var v=easeOutExpo(p)*target;
+      var d=Math.floor(v);
+      el.textContent=(target>=1000?fmtNum(d):d)+suffix;
+      if(p<1){requestAnimationFrame(upd)}else{el.textContent=(target>=1000?fmtNum(target):target)+suffix;el.classList.remove('counting')}
+    }
+    requestAnimationFrame(upd);
+  }
+
+  var numObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.counter-item').forEach(function(item,i){
+          setTimeout(function(){
+            countUp(item.querySelector('.counter-value'),parseFloat(item.dataset.target),item.dataset.suffix||'');
+          },i*200);
+        });
+        numObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.3});
+  var numSec=document.getElementById('numbers');
+  if(numSec)numObs.observe(numSec);
+
+  /* ===== PARALLAX ===== */
+  var parEls=document.querySelectorAll('[data-parallax]');
+  window.addEventListener('scroll',function(){
+    parEls.forEach(function(el){
+      var rect=el.getBoundingClientRect();
+      var speed=parseFloat(el.dataset.parallax)||100;
+      var offset=((rect.top+rect.height/2-window.innerHeight/2)/window.innerHeight)*speed;
+      el.style.transform='translateY('+(-offset)+'px)';
+    });
+  },{passive:true});
+
+  /* ===== FAQ ACCORDION ===== */
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.parentElement;
+      var wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open')});
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
