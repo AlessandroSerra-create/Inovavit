@@ -729,18 +729,37 @@ footer{background:var(--footer-bg);padding:80px 32px 48px;position:relative;z-in
 
   for(var i=1;i<=FRAME_COUNT;i++){
     var img=new Image();
-    img.src='frames/frame_'+String(i).padStart(4,'0')+'.jpg';
+    img.src='frames-upscaled/frame_'+String(i).padStart(4,'0')+'.webp';
     img.onload=function(){
       loadedFrames++;
       loaderBar.style.width=(loadedFrames/FRAME_COUNT)*100+'%';
       if(loadedFrames===FRAME_COUNT){
+        clearTimeout(loaderTimeout);
         loader.style.opacity='0';
         setTimeout(function(){loader.style.display='none'},600);
         drawFrame(0);currentFrame=0;
       }
     };
+    img.onerror=function(){
+      loadedFrames++;
+      loaderBar.style.width=(loadedFrames/FRAME_COUNT)*100+'%';
+      if(loadedFrames===FRAME_COUNT){
+        clearTimeout(loaderTimeout);
+        loader.style.opacity='0';
+        setTimeout(function(){loader.style.display='none'},600);
+      }
+    };
     frames.push(img);
   }
+
+  /* Fallback: hide loader after 3s even if frames haven't loaded */
+  var loaderTimeout=setTimeout(function(){
+    if(loader.style.display!=='none'){
+      loader.style.opacity='0';
+      setTimeout(function(){loader.style.display='none'},600);
+      if(loadedFrames>0){drawFrame(0);currentFrame=0;}
+    }
+  },3000);
 
   /* ===== SCROLL ANIMATION + ANNOTATION CARDS ===== */
   var scrollSection=document.querySelector('.scroll-animation');
